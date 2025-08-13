@@ -1,7 +1,10 @@
+import os
 from bs4 import BeautifulSoup
 from art import tprint
 from helper import *
 
+
+PATH_JSON_FILES = 'json'
 
 @try_decorator
 def get_tags(col):
@@ -66,7 +69,7 @@ def main(url: str, page:int):
         html = get_html(url_get)
         if html is not False:
             links = get_links(html)
-            append_json(links, f'./json/{get_file_name(url_get)}')
+            append_json(links, f'./{PATH_JSON_FILES}/{get_file_name(url_get)}')
             pc(f'[+] → {i}', url_get, color = 2)
         else:
             pc(f'[-] 159 → html is False', color = 1)
@@ -81,6 +84,10 @@ def get_file_name(url: str):
 if __name__ == "__main__":
     """ parsing citaty """
     tprint('.: citaty :.', font='cybermedium')
+
+    if os.path.isdir(PATH_JSON_FILES) is False:
+        os.makedirs(f'./{PATH_JSON_FILES}', exist_ok=True)
+        pc('[+] created folder', color=3)
 
     url = f'https://citaty.info/man/viktor-pelevin'
     main(url, 50)

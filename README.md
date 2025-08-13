@@ -1,11 +1,5 @@
 # parsing citaty.info/{type}/{tag}
 
-first of all created ./json/ for *.json files
-
-```
-mkdir json
-```
-
 and start, type ~ book, movie, man
 
 ```
